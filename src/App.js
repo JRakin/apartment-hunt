@@ -30,24 +30,24 @@ function App() {
           <Route path="/home">
             <Home />
           </Route>
-          <Route path="/Apartment">
+          <PrivateRoute path="/Apartment/:id">
             <Details />
-          </Route>
+          </PrivateRoute>
           <Route path="/login">
             <Login />
           </Route>
           <Route path="/SignUp">
             <SignUp />
           </Route>
-          <Route path="/BookingList">
+          <PrivateRoute path="/BookingList">
             <BookingList />
-          </Route>
-          <Route path="/AddRent">
+          </PrivateRoute>
+          <PrivateRoute path="/AddRent">
             <AddRent />
-          </Route>
-          <Route path="/MyRent">
+          </PrivateRoute>
+          <PrivateRoute path="/MyRent">
             <MyRent />
-          </Route>
+          </PrivateRoute>
           <Route path="/">
             <Home />
           </Route>

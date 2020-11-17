@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import PricingDetails from './PricingDetails';
 
 const Details = () => {
   const [apartmentData, setApartmentData] = useState({});
@@ -9,20 +10,16 @@ const Details = () => {
 
   const location = useLocation();
 
-  console.log(location.state.apartment);
-
   useEffect(() => {
-    // fetch('http://localhost:4000/getApartment/' + id)
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     setApartment(data);
-    //     console.log(data);
-    //   });
-
-    if (location.state) {
-      setApartmentData(location.state.apartment);
-    }
-  }, [location.state]);
+    fetch(`https://infinite-waters-22422.herokuapp.com/getApartment/${id}`, {
+      method: 'GET',
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setApartmentData(data);
+        console.log(data);
+      });
+  }, [id]);
 
   console.log(apartmentData);
 
@@ -33,7 +30,7 @@ const Details = () => {
     const newData = { ...data, status: 'pending' };
     console.log(newData);
 
-    fetch('http://localhost:4000/addBooking', {
+    fetch('https://infinite-waters-22422.herokuapp.com/addBooking', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
@@ -129,53 +126,7 @@ const Details = () => {
           </div>
         </div>
       </div>
-
-      <div className="container my-5">
-        <h2>{apartmentData.name}</h2>
-        <div className="row">
-          <div className="col-md-6">
-            <h3 className="price">BDT {apartmentData.price}/-</h3>
-            <p>{apartmentData.details}</p>
-            <h3 className="theme-text">Price Deatils</h3>
-            <span>
-              Rent Per Month : BDT {apartmentData.pricing.rentPerMonth}/-
-            </span>{' '}
-            <br />
-            <span>
-              Service Charge : BDT {apartmentData.pricing.ServiceCharge}/-
-            </span>{' '}
-            <br />
-            <span>
-              Security Deposit : {apartmentData.pricing.securityDeposit} months
-              rent
-            </span>{' '}
-            <br />
-            <span>
-              Flat Release Policy : {apartmentData.pricing.flatReleasePolicy}{' '}
-              months earlier notice required
-            </span>
-          </div>
-          <div className="col-md-6">
-            <h3 className="theme-text">Property Deatils</h3>
-            <p>
-              {apartmentData.propertyDetails.address.road} ,
-              {apartmentData.propertyDetails.address.houseNo} ,
-              {apartmentData.propertyDetails.address.street} ,
-              {apartmentData.propertyDetails.address.city}
-            </p>
-            <p>{apartmentData.propertyDetails.flatSize} Sq-ft.</p>
-            <p>{apartmentData.propertyDetails.facilities}</p>
-            <p>
-              {apartmentData.propertyDetails.additionalFacilities.number1} ,
-              {apartmentData.propertyDetails.additionalFacilities.number2} ,
-              {apartmentData.propertyDetails.additionalFacilities.number3} ,
-              {apartmentData.propertyDetails.additionalFacilities.number4} ,
-              {apartmentData.propertyDetails.additionalFacilities.number5}
-            </p>
-            ,
-          </div>
-        </div>
-      </div>
+      <PricingDetails key={id} apartmentData={apartmentData}></PricingDetails>
     </>
   );
 };

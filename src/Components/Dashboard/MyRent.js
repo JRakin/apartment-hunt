@@ -7,7 +7,7 @@ const MyRent = () => {
 
   const [loggedInUser, setloggedInUser] = useContext(UserContext);
   useEffect(() => {
-    fetch('http://localhost:4000/getAll/')
+    fetch('https://infinite-waters-22422.herokuapp.com/getAll')
       .then((res) => res.json())
       .then((data) => {
         setBookingsList(data);

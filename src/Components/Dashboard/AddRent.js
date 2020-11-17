@@ -15,7 +15,7 @@ const AddRent = () => {
     formData.append('price', data.price);
     formData.append('bed', data.bed);
 
-    fetch('http://localhost:4000/addApartment', {
+    fetch('https://infinite-waters-22422.herokuapp.com/addApartment', {
       method: 'POST',
       body: formData,
     })

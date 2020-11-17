@@ -10,10 +10,7 @@ const Apartments = ({ apartment }) => {
   const history = useHistory();
 
   const handleViewDetails = (id) => {
-    history.push({
-      pathname: '/Apartment',
-      state: { apartment },
-    });
+    history.push('/Apartment/' + id);
     // history.push('/dashboard/' + id);
   };
 

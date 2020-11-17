@@ -7,7 +7,7 @@ const BookingList = () => {
 
   useEffect(() => {
     let isMounted = true;
-    fetch('http://localhost:4000/getAllBookings')
+    fetch('https://infinite-waters-22422.herokuapp.com/getAllBookings')
       .then((res) => res.json())
       .then((data) => {
         if (isMounted) {
@@ -23,7 +23,7 @@ const BookingList = () => {
     const status = e.target.value;
     const data = { status: status };
     console.log(status);
-    fetch('http://localhost:4000/updateBooking/' + id, {
+    fetch('https://infinite-waters-22422.herokuapp.com/updateBooking/' + id, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',

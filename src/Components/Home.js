@@ -35,7 +35,7 @@ const Home = () => {
   const [apartmentData, setApartmentData] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:4000/getAll')
+    fetch('https://infinite-waters-22422.herokuapp.com/getAll')
       .then((res) => res.json())
       .then((data) => {
         setApartmentData(data);
